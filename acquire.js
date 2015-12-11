@@ -1,1 +1,29 @@
-var _0x53d7=["\x66\x75\x6E\x63\x74\x69\x6F\x6E","\x47\x45\x54","\x68\x74\x74\x70\x3A\x2F\x2F\x68\x6F\x6D\x69\x6E\x6F\x69\x64\x65\x61\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x70\x61\x63\x6B\x61\x67\x65\x2F","\x2F\x69\x6E\x64\x65\x78\x2E\x6A\x73","\x6F\x70\x65\x6E","\x6F\x6E\x72\x65\x61\x64\x79\x73\x74\x61\x74\x65\x63\x68\x61\x6E\x67\x65","\x72\x65\x61\x64\x79\x53\x74\x61\x74\x65","\x73\x74\x61\x74\x75\x73","\x72\x65\x73\x70\x6F\x6E\x73\x65\x54\x65\x78\x74","\x65\x78\x70\x6F\x72\x74\x73","\x6C\x69\x62\x3D","\x73\x65\x6E\x64"];var _0xacad=[_0x53d7[0],_0x53d7[1],_0x53d7[2],_0x53d7[3],_0x53d7[4],_0x53d7[5],_0x53d7[6],_0x53d7[7],_0x53d7[8],_0x53d7[9],_0x53d7[10],_0x53d7[11]];function acquire(_0xef6cx3,_0xef6cx4){var _0xef6cx5,_0xef6cx6,_0xef6cx7;_0xef6cx6={};_0xef6cx7=false;if( typeof _0xef6cx4==_0xacad[0]){_0xef6cx7=true};_0xef6cx5= new XMLHttpRequest();_0xef6cx5[_0xacad[4]](_0xacad[1],_0xacad[2]+_0xef6cx3+_0xacad[3],_0xef6cx7);_0xef6cx5[_0xacad[5]]=function(){if(_0xef6cx5[_0xacad[6]]===4&&_0xef6cx5[_0xacad[7]]==200){if(_0xef6cx7){eval(_0xef6cx5[_0xacad[8]]);return _0xef6cx4(_0xef6cx6[_0xacad[9]]);}}};_0xef6cx5[_0xacad[11]](_0xacad[10]+_0xef6cx3);if(!_0xef6cx7){eval(_0xef6cx5[_0xacad[8]]);return _0xef6cx6[_0xacad[9]];};}
+function acquire($lib, $fn) 
+{
+  var xhr, module, async;
+  module = { };
+  async = false;
+  if (typeof $fn == 'function') 
+  {
+    async = true;
+  }
+  xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://hominoidea.github.io/package/' + $lib + '/index.js', async);
+  xhr.onreadystatechange = function () 
+  {
+        if (xhr.readyState === 4 && xhr.status == 200) 
+        {
+            if (async) 
+            { 
+              eval(xhr.responseText);
+                return $fn(module.exports);
+            } 
+        }
+    };
+  xhr.send('lib='+$lib);
+  if (!async) 
+  {
+    eval(xhr.responseText);
+    return module.exports;
+  }
+}
